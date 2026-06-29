@@ -23,7 +23,7 @@ public class ControlPanel extends VBox {
     private final TextArea rulesArea = new TextArea();
     private final TextField angleField = new TextField();
     private final TextField stepField = new TextField();
-    private final Slider depthSlider = new Slider(1, 50, 5);
+    private final Slider depthSlider = new Slider(1, 10, 5);
     private final Label depthLabel = new Label("5");
     private final Button generateButton = new Button("Generate");
     private final Button resetButton = new Button("Reset");
