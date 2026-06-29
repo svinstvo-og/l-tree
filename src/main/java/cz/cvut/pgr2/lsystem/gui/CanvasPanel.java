@@ -13,6 +13,7 @@ public class CanvasPanel extends Pane {
     private final Canvas canvas = new Canvas();
     private InterpretResult lastResult;
     private Color strokeColor = Color.BLACK;
+    private double lineWidth = 1.0;
 
     private double zoom = 1.0;
     private double panX = 0.0;
@@ -57,13 +58,17 @@ public class CanvasPanel extends Pane {
     }
 
     public void display(InterpretResult result) {
-        resetView();
         lastResult = result;
         repaint();
     }
 
     public void setStrokeColor(Color color) {
         this.strokeColor = color;
+        repaint();
+    }
+
+    public void setLineWidth(double lineWidth) {
+        this.lineWidth = lineWidth;
         repaint();
     }
 
@@ -80,7 +85,7 @@ public class CanvasPanel extends Pane {
         gc.save();
         gc.translate(panX, panY);
         gc.scale(zoom, zoom);
-        Renderer.render(gc, lastResult, canvas.getWidth(), canvas.getHeight(), strokeColor);
+        Renderer.render(gc, lastResult, canvas.getWidth(), canvas.getHeight(), strokeColor, lineWidth);
         gc.restore();
     }
 }

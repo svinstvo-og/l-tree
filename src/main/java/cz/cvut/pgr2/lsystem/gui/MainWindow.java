@@ -46,6 +46,7 @@ public class MainWindow {
         };
 
         task.setOnSucceeded(e -> {
+            canvasPanel.setLineWidth(params.lineWidth());
             canvasPanel.display(task.getValue());
             controlPanel.getGenerateButton().setDisable(false);
         });

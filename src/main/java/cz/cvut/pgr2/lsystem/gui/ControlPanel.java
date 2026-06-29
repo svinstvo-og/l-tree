@@ -16,13 +16,14 @@ import java.util.Map;
 public class ControlPanel extends VBox {
 
     public record LSystemParams(String axiom, Map<Character, String> rules,
-                                double angle, double stepLength, int depth) {}
+                                double angle, double stepLength, int depth, double lineWidth) {}
 
     private final ComboBox<LSystemPreset> presetBox = new ComboBox<>();
     private final TextField axiomField = new TextField();
     private final TextArea rulesArea = new TextArea();
     private final TextField angleField = new TextField();
     private final TextField stepField = new TextField();
+    private final TextField lineWidthField = new TextField();
     private final Slider depthSlider = new Slider(1, 10, 5);
     private final Label depthLabel = new Label("5");
     private final Button generateButton = new Button("Generate");
@@ -68,12 +69,15 @@ public class ControlPanel extends VBox {
             if (p != null) populateFrom(p);
         });
 
+        lineWidthField.setText("1.0");
+
         getChildren().addAll(
             new Label("Preset:"), presetBox,
             new Label("Axiom:"), axiomField,
             new Label("Rules (one per line, X=…):"), rulesArea,
             new Label("Angle δ (degrees):"), withNumericFormatter(angleField),
             new Label("Step length:"), withNumericFormatter(stepField),
+            new Label("Line width:"), withNumericFormatter(lineWidthField),
             new Label("Depth:"), new HBox(6, depthSlider, depthLabel),
             generateButton, resetButton
         );
@@ -91,7 +95,8 @@ public class ControlPanel extends VBox {
         double angle = parseDouble(angleField.getText(), 90.0);
         double step = parseDouble(stepField.getText(), 8.0);
         int depth = (int) Math.round(depthSlider.getValue());
-        return new LSystemParams(axiom, rules, angle, step, depth);
+        double lineWidth = parseDouble(lineWidthField.getText(), 1.0);
+        return new LSystemParams(axiom, rules, angle, step, depth, lineWidth);
     }
 
     private void populateFrom(LSystemPreset p) {
