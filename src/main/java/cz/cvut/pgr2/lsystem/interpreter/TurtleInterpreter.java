@@ -7,8 +7,10 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
+/** Converts an L-system string into drawable line segments using turtle graphics. */
 public class TurtleInterpreter {
 
+    /** Segments produced by interpretation plus their collective bounding box. */
     public record InterpretResult(
             List<LineSegment> segments,
             double minX, double minY,
@@ -17,6 +19,10 @@ public class TurtleInterpreter {
 
     private record TurtleState(double x, double y, double angle, int depth) {}
 
+    /**
+     * Walks {@code lString} symbol by symbol, executing turtle commands.
+     * {@code F} draws, {@code f} moves silently, {@code +/-} turn, {@code [/]} push/pop state, {@code |} reverses heading.
+     */
     public InterpretResult interpret(String lString, double stepLength, double angleDeg) {
         List<LineSegment> segments = new ArrayList<>();
         Deque<TurtleState> stack = new ArrayDeque<>();

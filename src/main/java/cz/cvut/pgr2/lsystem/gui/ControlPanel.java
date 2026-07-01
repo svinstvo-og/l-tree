@@ -13,8 +13,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/** Left-hand sidebar: preset selector, editable L-system fields, and the Generate / Reset buttons. */
 public class ControlPanel extends VBox {
 
+    /** Snapshot of the current field values, passed to the engine on each generation. */
     public record LSystemParams(String axiom, Map<Character, String> rules,
                                 double angle, double stepLength, int depth, double lineWidth) {}
 
@@ -89,6 +91,7 @@ public class ControlPanel extends VBox {
 
     public Button getGenerateButton() { return generateButton; }
 
+    /** Reads and parses all input fields into an {@link LSystemParams} snapshot. */
     public LSystemParams readParams() {
         String axiom = axiomField.getText().trim();
         Map<Character, String> rules = parseRules(rulesArea.getText());

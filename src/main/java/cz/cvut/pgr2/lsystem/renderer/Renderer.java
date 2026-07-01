@@ -5,10 +5,15 @@ import cz.cvut.pgr2.lsystem.model.LineSegment;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
+/** Draws an {@link InterpretResult} onto a JavaFX canvas, auto-scaling to fit with a small margin. */
 public class Renderer {
 
     private static final double MARGIN_RATIO = 0.05;
 
+    /**
+     * Clears the canvas, computes a uniform scale from the bounding box, centers the result, then strokes each segment.
+     * If {@code strokeColor} is {@code null}, segments are coloured by branch depth (HSB cycle).
+     */
     public static void render(GraphicsContext gc, InterpretResult result,
                                double canvasW, double canvasH, Color strokeColor, double lineWidth) {
         gc.clearRect(0, 0, canvasW, canvasH);

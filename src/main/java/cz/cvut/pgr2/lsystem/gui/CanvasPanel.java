@@ -8,6 +8,10 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
+/**
+ * Rendering surface that wraps a JavaFX {@link Canvas}.
+ * Supports scroll-to-zoom and drag-to-pan; double-click resets the view.
+ */
 public class CanvasPanel extends Pane {
 
     private final Canvas canvas = new Canvas();
@@ -57,6 +61,7 @@ public class CanvasPanel extends Pane {
         });
     }
 
+    /** Stores the result and triggers a repaint. */
     public void display(InterpretResult result) {
         lastResult = result;
         repaint();

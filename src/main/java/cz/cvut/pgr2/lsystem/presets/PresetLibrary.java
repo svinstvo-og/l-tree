@@ -5,8 +5,10 @@ import cz.cvut.pgr2.lsystem.model.LSystemPreset;
 import java.util.List;
 import java.util.Map;
 
+/** Static catalogue of built-in L-system presets. Adding a new preset requires only a new entry here. */
 public class PresetLibrary {
 
+    /** Returns all built-in presets in display order. */
     public static List<LSystemPreset> getAll() {
         return List.of(
             new LSystemPreset(

@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+/** Root UI coordinator: wires {@link ControlPanel} and {@link CanvasPanel} and runs generation on a daemon thread. */
 public class MainWindow {
 
     private final LSystemEngine engine = new LSystemEngine();
